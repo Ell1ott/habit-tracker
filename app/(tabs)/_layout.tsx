@@ -5,6 +5,8 @@ import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
+import "../global.css";
+
 export default function TabLayout() {
 	const colorScheme = useColorScheme();
 
