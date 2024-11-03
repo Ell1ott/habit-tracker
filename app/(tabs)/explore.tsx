@@ -1,15 +1,13 @@
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { StyleSheet, Image, Platform } from "react-native";
+import { StyleSheet, View } from "react-native";
 
-import { Collapsible } from "@/components/Collapsible";
-import { ExternalLink } from "@/components/ExternalLink";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-import { View } from "react-native-reanimated/lib/typescript/Animated";
+import { Habit } from "@/components/habits/Habit";
 
 export default function TabTwoScreen() {
-	return <View className="bg-yellow-50"></View>;
+	return (
+		<View className="bg-neutral-100 flex-1 pt-16 p-4">
+			<Habit />
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
