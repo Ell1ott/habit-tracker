@@ -25,5 +25,5 @@ export function ThemedText({
 	const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
 	const typeClasses = TYPE_CLASSES[type] || TYPE_CLASSES.default;
 
-	return <Text className={typeClasses + } style={[{ color }, style]} {...rest} />;
+	return <Text className={typeClasses} style={[{ color }, style]} {...rest} />;
 }

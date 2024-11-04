@@ -32,7 +32,7 @@ export const Habit = () => {
 				className="flex flex-row items-center gap-2 mb-2"
 				onPress={() => handleDoneChange(!done)}
 			>
-				{useMemo(() => AnimatedIcon(done), [done])}
+				{AnimatedIcon(done)}
 				<ThemedText type="subtitle">Workout</ThemedText>
 			</Pressable>
 			<HabitGrid rows={rows} data={habitData} />
