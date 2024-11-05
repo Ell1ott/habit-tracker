@@ -2,10 +2,10 @@ import os
 import json
 from apng import APNG
 
+png_data = {}  # Dictionary to store results
 def analyze_animal_pngs(directory="Animals", output_file="durations.json"):
     """Analyze PNG files and save name/duration pairs to JSON"""
     
-    png_data = {}  # Dictionary to store results
     
     for file in os.listdir(directory):
         if file.lower().endswith('.png'):
@@ -34,4 +34,9 @@ def analyze_animal_pngs(directory="Animals", output_file="durations.json"):
             print(f"Error saving JSON file: {str(e)}")
 
 if __name__ == "__main__":
-    analyze_animal_pngs()
+    base_dir = "Emojis"
+    for folder in os.listdir(base_dir):
+        folder_path = os.path.join(base_dir, folder)
+        if os.path.isdir(folder_path):
+            print(f"\nAnalyzing folder: {folder}")
+            analyze_animal_pngs(directory=folder_path)
