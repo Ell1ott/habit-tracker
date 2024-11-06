@@ -4,11 +4,11 @@ import { ThemedText } from "../ThemedText";
 import { Dumbbell } from "lucide-react-native";
 import { useState, useEffect, useMemo, useRef, RefObject } from "react";
 import { Animated } from "react-native";
-import { Image } from "expo-image";
+import { Image, ImageSource } from "expo-image";
 import { Asset } from "expo-asset";
 import { emojis } from "@/assets/Emoji";
 
-export const Habit = ({ title, emoji }: { title: string; emoji: string }) => {
+export const Habit = ({ title, emoji }: { title: string; emoji: Emoji }) => {
 	const [done, setDone] = useState(false);
 
 	const handleDoneChange = (newDoneValue: boolean) => {
@@ -35,19 +35,23 @@ export const Habit = ({ title, emoji }: { title: string; emoji: string }) => {
 				className="flex flex-row items-center gap-2 mb-2"
 				onPress={() => handleDoneChange(!done)}
 			>
-				{AnimatedIcon(done)}
-				<ThemedText type="subtitle">Workout</ThemedText>
+				{AnimatedIcon(emoji, done)}
+				<ThemedText type="subtitle">{title}</ThemedText>
 			</Pressable>
 			<HabitGrid rows={rows} data={habitData} />
 		</View>
 	);
 };
 
-const AnimatedIcon = (done: boolean) => {
+type Emoji = {
+	image: ImageSource;
+	duration: number;
+};
+
+const AnimatedIcon = (emoji: Emoji, done: boolean) => {
 	const scaleValue = new Animated.Value(1);
 	const emojiRef = useRef<Image>(null);
-	const [image, setImage] = useState(null);
-	const emoji = useMemo(() => emojis.Balloon, []);
+
 	useEffect(() => {
 		if (done) {
 			Animated.spring(scaleValue, {
@@ -75,7 +79,7 @@ const AnimatedIcon = (done: boolean) => {
 	return (
 		<Animated.View
 			className={
-				"rounded-md aspect-square flex items-center h-14 p-0 justify-center border-[0.5px] border-black/30 " +
+				"rounded-md aspect-square flex items-center h-14 p-0 justify-center " +
 				(done ? "bg-sky-200" : "bg-sky-50")
 			}
 			style={{

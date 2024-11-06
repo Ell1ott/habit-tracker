@@ -36,7 +36,7 @@ def analyze_animal_pngs(directory="Animals", output_file="durations.json"):
         
         # Save to JSON file
         try:
-            with open(output_file, 'w') as f:
+            with open(output_file, 'w', encoding='utf-8') as f:
                 json.dump(png_data, f, indent=2)
             # print(f"Duration data saved to {output_file}")
         except Exception as e:
@@ -55,6 +55,6 @@ if __name__ == "__main__":
             analyze_animal_pngs(directory=folder_path)
             
     importFileString += "}"
-    with open("../../assets/Emoji.ts", 'w') as f:
+    with open("../../assets/Emoji.ts", 'w', encoding="utf-8") as f:
         f.write(importFileString)
     print("Done")
