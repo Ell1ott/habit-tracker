@@ -7,8 +7,17 @@ import { Animated } from "react-native";
 import { Image, ImageSource } from "expo-image";
 import { Asset } from "expo-asset";
 import { emojis } from "@/assets/Emoji";
+import { colors } from "@/assets/Colors";
 
-export const Habit = ({ title, emoji }: { title: string; emoji: Emoji }) => {
+export const Habit = ({
+	title,
+	emoji,
+	color = colors.Sky,
+}: {
+	title: string;
+	emoji: Emoji;
+	color?: string;
+}) => {
 	const [done, setDone] = useState(false);
 
 	const handleDoneChange = (newDoneValue: boolean) => {
@@ -38,7 +47,7 @@ export const Habit = ({ title, emoji }: { title: string; emoji: Emoji }) => {
 				{AnimatedIcon(emoji, done)}
 				<ThemedText type="subtitle">{title}</ThemedText>
 			</Pressable>
-			<HabitGrid rows={rows} data={habitData} />
+			<HabitGrid rows={rows} data={habitData} color={color} />
 		</View>
 	);
 };
@@ -78,22 +87,17 @@ const AnimatedIcon = (emoji: Emoji, done: boolean) => {
 	}, [done]);
 	return (
 		<Animated.View
-			className={
-				"rounded-md aspect-square flex items-center h-14 p-0 justify-center " +
-				(done ? "bg-sky-200" : "bg-sky-50")
-			}
+			className="rounded-md aspect-square flex items-center h-14 p-0 justify-center bg-sky-200"
 			style={{
 				transform: [{ scale: scaleValue }],
+				opacity: done ? 1 : 0.5,
 			}}
 		>
-			{/* <Dumbbell size={26} color="black" /> */}
-
 			<Image
 				style={{ height: 40, width: 40 }}
 				source={emoji.image}
 				autoplay={false}
 				ref={emojiRef}
-				className="p-0 m-4"
 			/>
 		</Animated.View>
 	);

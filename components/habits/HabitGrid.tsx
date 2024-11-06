@@ -1,7 +1,15 @@
 import React, { useState, useMemo } from "react";
 import { View } from "react-native";
 
-const HabitGrid = ({ data, rows }: { data: boolean[]; rows: number }) => {
+const HabitGrid = ({
+	data,
+	rows,
+	color,
+}: {
+	data: boolean[];
+	rows: number;
+	color: string;
+}) => {
 	// Using useState for mutable state
 
 	return (
@@ -9,9 +17,8 @@ const HabitGrid = ({ data, rows }: { data: boolean[]; rows: number }) => {
 			{data.map((isCompleted, i) => (
 				<View
 					key={i}
-					className={`w-[11px] h-[11px] m-[2px] rounded-sm ${
-						isCompleted ? "bg-sky-500" : "bg-sky-100"
-					}`}
+					className="w-[11px] h-[11px] m-[2px] rounded-sm"
+					style={{ opacity: isCompleted ? 1 : 0.15, backgroundColor: color }}
 				/>
 			))}
 		</View>
