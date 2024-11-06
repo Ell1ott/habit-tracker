@@ -1,3 +1,4 @@
+import { TWColor } from "@/assets/Colors";
 import React, { useState, useMemo } from "react";
 import { View } from "react-native";
 
@@ -8,17 +9,23 @@ const HabitGrid = ({
 }: {
 	data: boolean[];
 	rows: number;
-	color: string;
+	color: TWColor;
 }) => {
 	// Using useState for mutable state
+	const size = 10.5;
 
 	return (
-		<View className="flex flex-wrap" style={{ height: rows * (11 + 4) }}>
+		<View className="flex flex-wrap" style={{ height: rows * (size + 4) }}>
 			{data.map((isCompleted, i) => (
 				<View
 					key={i}
-					className="w-[11px] h-[11px] m-[2px] rounded-sm"
-					style={{ opacity: isCompleted ? 1 : 0.15, backgroundColor: color }}
+					className="m-[2px] rounded-sm"
+					style={{
+						opacity: isCompleted ? 1 : 0.15,
+						backgroundColor: color[5],
+						height: size,
+						width: size,
+					}}
 				/>
 			))}
 		</View>

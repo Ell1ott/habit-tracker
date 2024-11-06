@@ -7,16 +7,16 @@ import { Animated } from "react-native";
 import { Image, ImageSource } from "expo-image";
 import { Asset } from "expo-asset";
 import { emojis } from "@/assets/Emoji";
-import { colors } from "@/assets/Colors";
+import { TwColors, TWColor } from "@/assets/Colors";
 
 export const Habit = ({
 	title,
 	emoji,
-	color = colors.Sky,
+	color = TwColors.Sky,
 }: {
 	title: string;
 	emoji: Emoji;
-	color?: string;
+	color?: TWColor;
 }) => {
 	const [done, setDone] = useState(false);
 
@@ -44,7 +44,7 @@ export const Habit = ({
 				className="flex flex-row items-center gap-2 mb-2"
 				onPress={() => handleDoneChange(!done)}
 			>
-				{AnimatedIcon(emoji, done)}
+				{AnimatedIcon(emoji, done, color)}
 				<ThemedText type="subtitle">{title}</ThemedText>
 			</Pressable>
 			<HabitGrid rows={rows} data={habitData} color={color} />
@@ -57,7 +57,7 @@ type Emoji = {
 	duration: number;
 };
 
-const AnimatedIcon = (emoji: Emoji, done: boolean) => {
+const AnimatedIcon = (emoji: Emoji, done: boolean, color: TWColor) => {
 	const scaleValue = new Animated.Value(1);
 	const emojiRef = useRef<Image>(null);
 
@@ -87,10 +87,11 @@ const AnimatedIcon = (emoji: Emoji, done: boolean) => {
 	}, [done]);
 	return (
 		<Animated.View
-			className="rounded-md aspect-square flex items-center h-14 p-0 justify-center bg-sky-200"
+			className="rounded-md aspect-square flex items-center h-14 p-0 justify-center "
 			style={{
 				transform: [{ scale: scaleValue }],
-				opacity: done ? 1 : 0.5,
+				opacity: done ? 1 : 0.75,
+				backgroundColor: done ? color[3] : color[1],
 			}}
 		>
 			<Image

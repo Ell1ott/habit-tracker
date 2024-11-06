@@ -1,21 +1,21 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Habit } from "@/components/habits/Habit";
 import { emojis } from "@/assets/Emoji";
-import { colors } from "@/assets/Colors";
+import { TwColors } from "@/assets/Colors";
 export default function TabTwoScreen() {
 	return (
-		<ScrollView className=" bg-neutral-100">
-			<View className="gap-4 flex-1 pt-16 p-4">
+		<ScrollView className=" bg-neutral-100 flex">
+			<View className="gap-4 flex-1 flex pt-16 p-4 h-full">
 				<Habit
 					title="Workout"
 					emoji={emojis.ManLiftingWeights}
-					color={colors.Red}
+					color={TwColors.Red}
 				/>
 				<Habit title="Reading" emoji={emojis.ClosedBook} />
 				<Habit
 					title="10 minute writing"
 					emoji={emojis.WritingHand}
-					color={colors.Amber}
+					color={TwColors.Amber}
 				/>
 				<Habit title="Meditating" emoji={emojis.WomaninLotusPosition} />
 				<Habit title="Stretching" emoji={emojis.PersonCartwheeling} />
@@ -24,16 +24,3 @@ export default function TabTwoScreen() {
 		</ScrollView>
 	);
 }
-
-const styles = StyleSheet.create({
-	headerImage: {
-		color: "#808080",
-		bottom: -90,
-		left: -35,
-		position: "absolute",
-	},
-	titleContainer: {
-		flexDirection: "row",
-		gap: 8,
-	},
-});
