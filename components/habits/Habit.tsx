@@ -5,6 +5,8 @@ import { Dumbbell } from "lucide-react-native";
 import { useState, useEffect, useMemo, useRef, RefObject } from "react";
 import { Animated } from "react-native";
 import { Image } from "expo-image";
+import { Asset } from "expo-asset";
+import { emojis } from "@/assets/Emoji";
 
 export const Habit = ({ title, emoji }: { title: string; emoji: string }) => {
 	const [done, setDone] = useState(false);
@@ -43,7 +45,9 @@ export const Habit = ({ title, emoji }: { title: string; emoji: string }) => {
 
 const AnimatedIcon = (done: boolean) => {
 	const scaleValue = new Animated.Value(1);
-	const emoji = useRef<Image>(null);
+	const emojiRef = useRef<Image>(null);
+	const [image, setImage] = useState(null);
+	const emoji = useMemo(() => emojis.Balloon, []);
 	useEffect(() => {
 		if (done) {
 			Animated.spring(scaleValue, {
@@ -60,17 +64,18 @@ const AnimatedIcon = (done: boolean) => {
 					useNativeDriver: true,
 				}).start();
 			});
-			emoji.current?.startAnimating();
+			if (emoji.duration <= 42) return;
+			emojiRef.current?.startAnimating();
 			setTimeout(() => {
-				emoji.current?.stopAnimating();
+				emojiRef.current?.stopAnimating();
 				console.log("HI");
-			}, 3024);
+			}, emoji.duration);
 		}
 	}, [done]);
 	return (
 		<Animated.View
 			className={
-				"rounded-md aspect-square flex items-center h-14 " +
+				"rounded-md aspect-square flex items-center h-14 p-0 justify-center border-[0.5px] border-black/30 " +
 				(done ? "bg-sky-200" : "bg-sky-50")
 			}
 			style={{
@@ -78,14 +83,14 @@ const AnimatedIcon = (done: boolean) => {
 			}}
 		>
 			{/* <Dumbbell size={26} color="black" /> */}
+
 			<Image
 				style={{ height: 40, width: 40 }}
-				source="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Flexed%20Biceps.png"
+				source={emoji.image}
 				autoplay={false}
-				ref={emoji}
+				ref={emojiRef}
+				className="p-0 m-4"
 			/>
-
-			<Text className="text-lg"></Text>
 		</Animated.View>
 	);
 };

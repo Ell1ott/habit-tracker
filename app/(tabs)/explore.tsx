@@ -3,7 +3,7 @@ import { Habit } from "@/components/habits/Habit";
 export default function TabTwoScreen() {
 	return (
 		<View className="bg-neutral-100 flex-1 pt-16 p-4">
-			<Habit title="Workout" emoji="🏋️" />
+			<Habit title="Workout" emoji="ant" />
 		</View>
 	);
 }
