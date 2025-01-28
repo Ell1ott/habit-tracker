@@ -4,10 +4,14 @@ import { emojis } from "@/assets/Emoji";
 import { TwColors } from "@/assets/Colors";
 import { useState } from "react";
 import { ThemedText } from "@/components/ThemedText";
+import { QuickDaySelection } from "@/components/diary/QuickDaySelection";
 import useCurrentDiaryContent from "@/stores/currentDiaryContent";
 export default function TabTwoScreen() {
 	const [isWriting, setIsWriting] = useState(false);
 	const currentDiaryContent = useCurrentDiaryContent();
+	function handleContentChange(content: string) {
+		currentDiaryContent.setContent(content);
+	}
 	return (
 		<ScrollView
 			className=" bg-neutral-100 flex"
@@ -31,13 +35,10 @@ export default function TabTwoScreen() {
 					onBlur={() => setIsWriting(false)}
 					textAlignVertical="top"
 					value={currentDiaryContent.content}
-					onChange={(e) => currentDiaryContent.setContent(e.nativeEvent.text)}
+					onChange={(e) => handleContentChange(e.nativeEvent.text)}
 				/>
-				{/* <View className="flex-1"></View> */}
-				{!isWriting && (
-					<Habit title="Playing volleyball" emoji={emojis.Volleyball} />
-				)}
 			</View>
+			<QuickDaySelection />
 		</ScrollView>
 	);
 }
