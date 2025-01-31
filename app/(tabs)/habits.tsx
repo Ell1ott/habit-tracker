@@ -21,7 +21,7 @@ export default function TabTwoScreen() {
 			title: "Workout",
 			emoji: "ManLiftingWeights",
 			color: "Red",
-			data: Array(rows * cols)
+			data: Array(rows * cols - 10)
 				.fill(false)
 				.map(() => Math.random() < 0.5),
 		},
@@ -73,7 +73,8 @@ export default function TabTwoScreen() {
 		try {
 			const savedHabits = await AsyncStorage.getItem("habits");
 			if (savedHabits) {
-				setHabits(JSON.parse(savedHabits));
+				// setHabits(JSON.parse(savedHabits));
+				setHabits(defaultHabits);
 			} else {
 				setHabits(defaultHabits);
 			}

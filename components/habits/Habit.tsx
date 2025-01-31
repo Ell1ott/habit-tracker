@@ -37,13 +37,17 @@ export const Habit = ({
 		setDone(newDoneValue);
 		setHabitData((prev: HabitType[]) => {
 			let p = [...prev];
-			p[index].data[p.length - 1] = newDoneValue;
+			p[index].data[p[index].data.length - 1] = newDoneValue;
 			return p;
 		});
 	};
 
 	const rows: number = 7;
 	const cols: number = 21;
+
+	const weekday = (new Date().getDay() + 6) % 7;
+
+	const knownDays = habitData[index].data.length + (6 - weekday);
 
 	return (
 		<View className="bg-white p-2 rounded-md drop-shadow-sm border-black/5 border">
@@ -54,7 +58,13 @@ export const Habit = ({
 				{AnimatedIcon(emoji, done, color)}
 				<ThemedText type="subtitle">{title}</ThemedText>
 			</Pressable>
-			<HabitGrid rows={rows} data={habitData[index].data} color={color} />
+			<HabitGrid
+				rows={rows}
+				data={habitData[index].data}
+				color={color}
+				extraAfter={6 - weekday}
+				extraBefore={Math.max(cols * rows - knownDays, 0)}
+			/>
 		</View>
 	);
 };
