@@ -6,6 +6,8 @@ import { useState } from "react";
 import { ThemedText } from "@/components/ThemedText";
 import { QuickDaySelection } from "@/components/diary/QuickDaySelection";
 import useCurrentDiaryContent from "@/stores/currentDiaryContent";
+import DiaryInput from "@/components/diary/DiaryInput";
+
 export default function TabTwoScreen() {
 	const [isWriting, setIsWriting] = useState(false);
 	const currentDiaryContent = useCurrentDiaryContent();
@@ -26,17 +28,11 @@ export default function TabTwoScreen() {
 						day: "numeric",
 					})}
 				</ThemedText>
-				<TextInput
-					className="text-xl flex-1"
-					placeholder="What happened today?"
-					placeholderTextColor={TwColors.Neutral[300]}
-					multiline={true}
-					onFocus={() => setIsWriting(true)}
-					onBlur={() => setIsWriting(false)}
-					textAlignVertical="top"
-					value={currentDiaryContent.content}
-					onChange={(e) => handleContentChange(e.nativeEvent.text)}
-				/>
+				<DiaryInput
+					setIsWriting={setIsWriting}
+					content={currentDiaryContent.content}
+					handleContentChange={handleContentChange}
+				></DiaryInput>
 			</View>
 			<QuickDaySelection />
 		</ScrollView>

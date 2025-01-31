@@ -5,6 +5,7 @@ import { TwColors } from "@/assets/Colors";
 import { useState } from "react";
 import { ThemedText } from "@/components/ThemedText";
 import useCurrentDiaryContent from "@/stores/currentDiaryContent";
+import DiaryInput from "@/components/diary/DiaryInput";
 export default function TabTwoScreen() {
 	const [isWriting, setIsWriting] = useState(false);
 	const currentDiaryContent = useCurrentDiaryContent();
@@ -22,18 +23,11 @@ export default function TabTwoScreen() {
 						day: "numeric",
 					})}
 				</ThemedText>
-				<TextInput
-					className="text-xl flex-1"
-					placeholder="What happened today?"
-					placeholderTextColor={TwColors.Neutral[4]}
-					// placeholderClassName="text-red-500"
-					multiline={true}
-					onFocus={() => setIsWriting(true)}
-					onBlur={() => setIsWriting(false)}
-					textAlignVertical="top"
-					value={currentDiaryContent.content}
-					onChange={(e) => currentDiaryContent.setContent(e.nativeEvent.text)}
-				/>
+				<DiaryInput
+					setIsWriting={setIsWriting}
+					content={currentDiaryContent.content}
+					handleContentChange={(s) => currentDiaryContent.setContent(s)}
+				></DiaryInput>
 				{/* <View className="flex-1"></View> */}
 				{/* {!isWriting && (
 					<Habit title="Playing volleyball" emoji={emojis.Volleyball} />
