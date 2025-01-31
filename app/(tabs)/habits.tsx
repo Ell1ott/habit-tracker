@@ -71,10 +71,34 @@ export default function TabTwoScreen() {
 
 	const loadHabits = async () => {
 		try {
+			const metaData = await AsyncStorage.getItem("meta");
+			let newDays = 0;
+			const day = Math.floor(Date.now() / 86400000);
+			if (metaData) {
+				console.log("Meta data loaded");
+				const parsedMeta = JSON.parse(metaData);
+				console.log(day - parsedMeta.day);
+				newDays = day - parsedMeta.day;
+			}
+			await AsyncStorage.setItem(
+				"meta",
+				JSON.stringify({
+					// Day since 1970
+					day,
+				})
+			);
+
 			const savedHabits = await AsyncStorage.getItem("habits");
 			if (savedHabits) {
-				// setHabits(JSON.parse(savedHabits));
-				setHabits(defaultHabits);
+				const parsedHabits = JSON.parse(savedHabits);
+				for (let i = 0; i < newDays; i++) {
+					parsedHabits.forEach((habit: any) => {
+						habit.data.push(Math.random() < 0.5);
+					});
+				}
+				setHabits(parsedHabits);
+				saveHabits(parsedHabits);
+				// setHabits(defaultHabits);
 				console.log("Habits loaded");
 			} else {
 				setHabits(defaultHabits);
@@ -100,12 +124,12 @@ export default function TabTwoScreen() {
 		}
 	};
 
-	const onHabitDataChange = (index: number, newData: boolean[]) => {
-		const updatedHabits = [...habits];
-		updatedHabits[index].data = newData;
-		setHabits(updatedHabits);
-		saveHabits(updatedHabits);
-	};
+	// const onHabitDataChange = (index: number, newData: boolean[]) => {
+	// 	const updatedHabits = [...habits];
+	// 	updatedHabits[index].data = newData;
+	// 	setHabits(updatedHabits);
+	// 	saveHabits(updatedHabits);
+	// };
 
 	const habitComps = useMemo(() => {
 		return habits.map((habit, i) => (

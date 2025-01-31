@@ -50,7 +50,7 @@ export const Habit = ({
 	const weekday = (new Date().getDay() + 6) % 7;
 
 	const knownDays = habitData[index].data.length + (6 - weekday);
-	console.log(habitData);
+	// console.log(habitData);
 	return (
 		<View className="bg-white p-2 rounded-md drop-shadow-sm border-black/5 border">
 			<Pressable
