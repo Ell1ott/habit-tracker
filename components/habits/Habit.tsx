@@ -8,35 +8,42 @@ import { Image, ImageSource } from "expo-image";
 import { Asset } from "expo-asset";
 import { emojis } from "@/assets/Emoji";
 import { TwColors, TWColor } from "@/assets/Colors";
+import { HabitType } from "@/app/(tabs)/habits";
+
+interface HabitProps {
+	title: string;
+	emoji: Emoji;
+	color?: TWColor;
+	habitData: HabitType;
+	setHabitData: (f: (prev: HabitType) => HabitType) => void;
+	index: number;
+}
+
+interface SaveHabitData {
+	(data: boolean[]): void;
+}
 
 export const Habit = ({
 	title,
 	emoji,
 	color = TwColors.Sky,
-}: {
-	title: string;
-	emoji: Emoji;
-	color?: TWColor;
-}) => {
-	const [done, setDone] = useState(false);
+	habitData,
+	setHabitData,
+	index,
+}: HabitProps) => {
+	const [done, setDone] = useState<boolean>(false);
 
-	const handleDoneChange = (newDoneValue: boolean) => {
+	const handleDoneChange = (newDoneValue: boolean): void => {
 		setDone(newDoneValue);
-		setHabitData((prev) => {
+		setHabitData((prev: HabitType) => {
 			let p = [...prev];
 			p[p.length - 1] = newDoneValue;
 			return p;
 		});
 	};
 
-	const rows = 7;
-	const cols = 21;
-
-	const [habitData, setHabitData] = useState(() =>
-		Array(rows * cols)
-			.fill(false)
-			.map(() => Math.random() < 0.5)
-	);
+	const rows: number = 7;
+	const cols: number = 21;
 
 	return (
 		<View className="bg-white p-2 rounded-md drop-shadow-sm border-black/5 border">
@@ -47,7 +54,7 @@ export const Habit = ({
 				{AnimatedIcon(emoji, done, color)}
 				<ThemedText type="subtitle">{title}</ThemedText>
 			</Pressable>
-			<HabitGrid rows={rows} data={habitData} color={color} />
+			<HabitGrid rows={rows} data={habitData[index].data} color={color} />
 		</View>
 	);
 };

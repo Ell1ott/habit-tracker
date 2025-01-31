@@ -34,9 +34,9 @@ export default function TabTwoScreen() {
 					onChange={(e) => currentDiaryContent.setContent(e.nativeEvent.text)}
 				/>
 				{/* <View className="flex-1"></View> */}
-				{!isWriting && (
+				{/* {!isWriting && (
 					<Habit title="Playing volleyball" emoji={emojis.Volleyball} />
-				)}
+				)} */}
 			</View>
 		</ScrollView>
 	);
