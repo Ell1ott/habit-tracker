@@ -31,7 +31,9 @@ export const Habit = ({
 	setHabitData,
 	index,
 }: HabitProps) => {
-	const [done, setDone] = useState<boolean>(false);
+	const [done, setDone] = useState<boolean>(
+		habitData[index].data[habitData[index].data.length - 1]
+	);
 
 	const handleDoneChange = (newDoneValue: boolean): void => {
 		setDone(newDoneValue);
@@ -48,7 +50,7 @@ export const Habit = ({
 	const weekday = (new Date().getDay() + 6) % 7;
 
 	const knownDays = habitData[index].data.length + (6 - weekday);
-
+	console.log(habitData);
 	return (
 		<View className="bg-white p-2 rounded-md drop-shadow-sm border-black/5 border">
 			<Pressable
@@ -60,7 +62,7 @@ export const Habit = ({
 			</Pressable>
 			<HabitGrid
 				rows={rows}
-				data={habitData[index].data}
+				data={habitData[index].data.slice(-(rows * cols - (6 - weekday)))}
 				color={color}
 				extraAfter={6 - weekday}
 				extraBefore={Math.max(cols * rows - knownDays, 0)}

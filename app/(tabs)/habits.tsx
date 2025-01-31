@@ -21,7 +21,7 @@ export default function TabTwoScreen() {
 			title: "Workout",
 			emoji: "ManLiftingWeights",
 			color: "Red",
-			data: Array(rows * cols - 10)
+			data: Array(rows * cols - 30)
 				.fill(false)
 				.map(() => Math.random() < 0.5),
 		},
@@ -75,6 +75,7 @@ export default function TabTwoScreen() {
 			if (savedHabits) {
 				// setHabits(JSON.parse(savedHabits));
 				setHabits(defaultHabits);
+				console.log("Habits loaded");
 			} else {
 				setHabits(defaultHabits);
 			}
@@ -87,6 +88,7 @@ export default function TabTwoScreen() {
 	useEffect(() => {
 		if (habits.length > 0) {
 			setIsLoaded(true);
+			saveHabits(habits);
 		}
 	}, [habits]);
 
@@ -121,7 +123,7 @@ export default function TabTwoScreen() {
 
 	return (
 		<ScrollView className=" bg-neutral-100 flex">
-			<View className="gap-4 flex-1 flex pt-16 p-4 h-full">{habitComps}</View>
+			<View className="gap-4 flex-1 flex p-4 pt-6 h-full">{habitComps}</View>
 		</ScrollView>
 	);
 }
