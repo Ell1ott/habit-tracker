@@ -14,8 +14,8 @@ interface HabitProps {
 	title: string;
 	emoji: Emoji;
 	color?: TWColor;
-	habitData: HabitType;
-	setHabitData: (f: (prev: HabitType) => HabitType) => void;
+	habitData: HabitType[];
+	setHabitData: React.Dispatch<React.SetStateAction<HabitType[]>>;
 	index: number;
 }
 
@@ -35,9 +35,9 @@ export const Habit = ({
 
 	const handleDoneChange = (newDoneValue: boolean): void => {
 		setDone(newDoneValue);
-		setHabitData((prev: HabitType) => {
+		setHabitData((prev: HabitType[]) => {
 			let p = [...prev];
-			p[p.length - 1] = newDoneValue;
+			p[index].data[p.length - 1] = newDoneValue;
 			return p;
 		});
 	};

@@ -25,7 +25,8 @@ export default function TabTwoScreen() {
 				<TextInput
 					className="text-xl flex-1"
 					placeholder="What happened today?"
-					placeholderTextColor={TwColors.Neutral[400]}
+					placeholderTextColor={TwColors.Neutral[4]}
+					// placeholderClassName="text-red-500"
 					multiline={true}
 					onFocus={() => setIsWriting(true)}
 					onBlur={() => setIsWriting(false)}

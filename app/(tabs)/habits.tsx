@@ -112,7 +112,7 @@ export default function TabTwoScreen() {
 				title={habit.title}
 				emoji={emojis[habit.emoji]}
 				color={habit.color && TwColors[habit.color]}
-				habitData={habit}
+				habitData={habits}
 				setHabitData={setHabits}
 			/>
 		));
