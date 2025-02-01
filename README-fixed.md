@@ -1,5 +1,3 @@
-Collecting workspace information
-
 # Life Tracker
 
 **Life Tracker** is a simple and efficient habit tracker designed to help you build and maintain good habits. With an intuitive interface and essential features, Life Tracker makes it easy to track your daily habits and stay motivated.
