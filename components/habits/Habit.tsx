@@ -1,4 +1,4 @@
-import { Pressable, Text, View } from "react-native";
+import { Platform, Pressable, Text, View } from "react-native";
 import HabitGrid from "./HabitGrid";
 import { ThemedText } from "../ThemedText";
 import { Dumbbell } from "lucide-react-native";
@@ -97,6 +97,7 @@ const AnimatedIcon = (emoji: Emoji, done: boolean, color: TWColor) => {
 				}).start();
 			});
 			if (emoji.duration <= 42) return;
+			if (Platform.OS === "web") return;
 			emojiRef.current?.startAnimating();
 			setTimeout(() => {
 				emojiRef.current?.stopAnimating();
