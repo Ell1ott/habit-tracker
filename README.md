@@ -1,50 +1,56 @@
-# Welcome to your Expo app 👋
+Collecting workspace information
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# Life Tracker
 
-## Get started
+**Life Tracker** is a simple and efficient habit tracker designed to help you build and maintain good habits. With an intuitive interface and essential features, Life Tracker makes it easy to track your daily habits and stay motivated.
 
-1. Install dependencies
+## Features
 
+### Current Features
+- **Track Habits:** Easily add and track your daily habits.
+- **Progress Visualization:** View your progress with visual indicators.
+- **Diary:** Write daily entries to reflect on your day and track your thoughts.
+
+### Planned Features
+- **Social Sharing:** Share your progress with friends and family.
+- **Reminders:** Set reminders to keep you on track.
+- **Dark Mode:** Switch between light and dark themes based on your preference.
+
+## Technologies
+
+- **React Native** with Expo
+- **TypeScript** for type safety
+- **NativeWind** for Tailwind CSS-based styling
+- **Zustand** for state management
+
+## Getting Started
+
+To run the project locally:
+
+1. Clone the repository:
    ```bash
-   npm install
+   git clone https://github.com/your-username/life-tracker.git
+   cd life-tracker
+   ```
+2. Install dependencies:
+   ```bash
+   bun i
+   ```
+3. Run the app using Expo:
+   ```bash
+   bun start
    ```
 
-2. Start the app
+You can use the app on a mobile device via the Expo Go app or run it in an emulator.
 
-   ```bash
-    npx expo start
-   ```
+## Contributions
 
-In the output, you'll find options to open the app in a
+We welcome contributions! If you have an idea, find a bug, or want to improve the app, feel free to open a pull request or an issue. All suggestions are appreciated.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## License
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Get a fresh project
+---
 
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+**Life Tracker** - Simple habit tracker that gets the job done.
