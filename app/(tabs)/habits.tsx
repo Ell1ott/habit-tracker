@@ -4,6 +4,7 @@ import { emojis } from "@/assets/Emoji";
 import { TwColors } from "@/assets/Colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useMemo, useState } from "react";
+import NewHabitButton from "@/components/habits/NewHabitButton";
 
 export type HabitType = {
 	title: string;
@@ -147,7 +148,10 @@ export default function TabTwoScreen() {
 
 	return (
 		<ScrollView className=" bg-neutral-100 flex">
-			<View className="gap-4 flex-1 flex p-4 pt-6 h-full">{habitComps}</View>
+			<View className="gap-4 flex-1 flex p-4 pt-6 h-full">
+				{habitComps}
+				<NewHabitButton />
+			</View>
 		</ScrollView>
 	);
 }
