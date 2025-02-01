@@ -27,40 +27,26 @@ export default function TabTwoScreen() {
 				.map(() => Math.random() < 0.5),
 		},
 		{
-			title: "Reading",
-			emoji: "ClosedBook",
-			data: Array(rows * cols)
-				.fill(false)
-				.map(() => Math.random() < 0.5),
-		},
-		{
 			title: "10 minute writing",
 			emoji: "WritingHand",
 			color: "Amber",
 			data: Array(rows * cols)
 				.fill(false)
-				.map(() => Math.random() < 0.5),
+				.map(() => Math.random() < 0.2),
 		},
 		{
 			title: "Meditating",
 			emoji: "WomaninLotusPosition",
 			data: Array(rows * cols)
 				.fill(false)
-				.map(() => Math.random() < 0.5),
+				.map(() => Math.random() < 0.3),
 		},
 		{
 			title: "Stretching",
 			emoji: "PersonCartwheeling",
-			data: Array(rows * cols)
+			data: Array(rows * cols - 10)
 				.fill(false)
-				.map(() => Math.random() < 0.5),
-		},
-		{
-			title: "Playing volleyball",
-			emoji: "Volleyball",
-			data: Array(rows * cols)
-				.fill(false)
-				.map(() => Math.random() < 0.5),
+				.map(() => Math.random() < 0.1),
 		},
 	];
 
@@ -146,11 +132,17 @@ export default function TabTwoScreen() {
 		));
 	}, [habits]);
 
+	const handleNewHabit = (habit: HabitType) => {
+		const updatedHabits = [...habits, habit];
+		setHabits(updatedHabits);
+		saveHabits(updatedHabits);
+	};
+
 	return (
 		<ScrollView className=" bg-neutral-100 flex">
 			<View className="gap-4 flex-1 flex p-4 pt-6 h-full">
 				{habitComps}
-				<NewHabitButton />
+				<NewHabitButton onNewHabit={handleNewHabit} />
 			</View>
 		</ScrollView>
 	);
