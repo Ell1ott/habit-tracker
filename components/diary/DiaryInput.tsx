@@ -21,6 +21,7 @@ export default function DiaryInput({
 			textAlignVertical="top"
 			value={content}
 			onChange={(e) => handleContentChange(e.nativeEvent.text)}
+			style={{ outline: "none" }}
 		/>
 	);
 }
