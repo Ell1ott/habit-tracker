@@ -93,7 +93,7 @@ export default function TabTwoScreen() {
 				const parsedHabits = JSON.parse(savedHabits);
 				for (let i = 0; i < newDays; i++) {
 					parsedHabits.forEach((habit: any) => {
-						habit.data.push(Math.random() < 0.5);
+						habit.data.push(false);
 					});
 				}
 				setHabits(parsedHabits);
