@@ -1,4 +1,5 @@
 # Life Tracker
+![Frame 12](https://github.com/user-attachments/assets/997c0940-ebb4-4dc2-898a-9c147ffb1d7f)
 
 **Life Tracker** is a simple and efficient habit tracker designed to help you build and maintain good habits. With an intuitive interface and essential features, Life Tracker makes it easy to track your daily habits and stay motivated.
 
